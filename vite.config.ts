@@ -9,5 +9,6 @@ export default defineConfig({
   },
   server: {
     port: 3000
-  }
+  },
+  base: 'https://isael-requena.github.io/tic-tac-toe-React'
 })
