@@ -1,6 +1,6 @@
 import { IWinner } from "../../types/game.types"
 import Square from "../square/Square"
-import TicTacToeSvg from '../../assets/tic-tac-toe/tic-tac-toe-win.svg'
+// import TicTacToeSvg from '../../assets/tic-tac-toe/tic-tac-toe-win.svg'
 
 type IWinnerProps = {
   winner: IWinner,
@@ -10,7 +10,7 @@ type IWinnerProps = {
 const WinnerModal = ({winner, resetGame}:IWinnerProps): JSX.Element | null => {
   if (winner === null) return null
 
-  const winnerText = winner === false ? 'Empate' : 'Ganó'
+  const winnerText = winner === false ? 'Tied game' : 'Winning Player'
 
   return (
     <section className="winner">

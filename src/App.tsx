@@ -6,10 +6,18 @@ import { TURNS } from "./providers/constants"
 import { WINNER_COMBOS } from "./providers/constants"
 import { IBoard, IWinner } from "./types/game.types"
 import TicTacToePositiveSvg from "./assets/svg/tic-tac-toe/tic-tac-toe-logo-positive.svg"
+import { deleteAllLocalStorage, deleteItemLocalStorage, getLocalStorage, setLocalStorage } from "./services/local-storage.service"
 
 function App() {
-  const [board,setBoard] = useState<IBoard>(Array(9).fill(null));
-  const [turn,setTurn] = useState<TURNS>(TURNS.X);
+  const [board,setBoard] = useState<IBoard>(() => {
+    const boardLocalStorage = getLocalStorage<IBoard>('board')
+    console.log('board', boardLocalStorage)
+    return boardLocalStorage ?? Array(9).fill(null)
+  });
+  const [turn,setTurn] = useState<TURNS>(() => {
+    const turnLocalStorage = getLocalStorage<TURNS>('turn')
+    return turnLocalStorage ?? TURNS.X
+  });
   const [winner,setWinner] = useState<IWinner>(null)
 
   const checkWinner = (boardToCheck: IBoard): TURNS | null => {
@@ -36,7 +44,12 @@ function App() {
     const newBoard = [...board]
     newBoard[index] = turn
     setBoard(newBoard)
-    setTurn(turn === TURNS.X ? TURNS.O : TURNS.X)
+    const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
+    setTurn(newTurn) //Change Turn
+    //Save game
+    setLocalStorage('board', newBoard)
+    setLocalStorage('turn', newTurn)
+    //Check a winner
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
       confetti()
@@ -48,7 +61,9 @@ function App() {
   const resetGame = () => {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
-    setWinner(null)
+    setWinner(null);
+    deleteItemLocalStorage('board')
+    deleteItemLocalStorage('turn')
   }
 
   return (
