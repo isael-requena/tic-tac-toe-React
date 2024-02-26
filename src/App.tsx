@@ -6,7 +6,7 @@ import { TURNS } from "./providers/constants"
 import { WINNER_COMBOS } from "./providers/constants"
 import { IBoard, IWinner } from "./types/game.types"
 import TicTacToePositiveSvg from "./assets/svg/tic-tac-toe/tic-tac-toe-logo-positive.svg"
-import { deleteAllLocalStorage, deleteItemLocalStorage, getLocalStorage, setLocalStorage } from "./services/local-storage.service"
+import { deleteItemLocalStorage, getLocalStorage, setLocalStorage } from "./services/local-storage.service"
 
 function App() {
   const [board,setBoard] = useState<IBoard>(() => {
@@ -72,7 +72,7 @@ function App() {
         <img className="logo" src={TicTacToePositiveSvg} alt="Tic Tac Toe Logo" />
         <h1 className="title">Tic Tac <br/> Toe</h1>
       </div>
-      <button onClick={resetGame} className="reset-btn">Reset Game</button>
+      <button onClick={resetGame} className="btn-custom size-small mb-small">Reset Game</button>
       <section className="game">
         {board.map((square, index:number) => {
           return (
