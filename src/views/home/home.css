@@ -1,0 +1,13 @@
+.edit-btn {
+    margin: 0 0.6rem;
+    padding: 0.6rem 1.8rem;
+    font-size: 1.3rem;
+    border-radius: 24px;
+    border: 0;
+    background: rgba(0,0,0,.5);
+    cursor: pointer;
+}
+.lobby-header {
+    display: flex;
+    align-items: center;
+}

@@ -16,6 +16,7 @@ const WinnerModal = ({winner, resetGame}:IWinnerProps): JSX.Element | null => {
   return (
     <section className="modal-container">
       <div className="modal">
+        {/* button */}
         <h1 className="modal__title">
           {winnerText}
         </h1>
